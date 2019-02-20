@@ -19,8 +19,16 @@ from items import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from api.views import (
+    ItemListView,
+    ItemDetailView,
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('api/items/', ItemListView.as_view(), name='api-item-list'),
+    path('api/item/<int:item_id>/', ItemDetailView.as_view(), name='api-item-detail'),
 
     path('items/list/', views.item_list, name='item-list'),
     path('items/detail/<int:item_id>/', views.item_detail, name='item-detail'),
